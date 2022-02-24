@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+BASE=$(dirname $0)
+source "$BASE/log.sh"
+
 function instalar-requisitos-zsh {
     sudo apt install zsh curl wget python3-pygments chroma
 }
@@ -14,5 +17,5 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
     echo -e "omz plugin enable git asdf python pip colored-man-pages colorize docker docker-compose ufw\n"
 }
 
-instalar-requisitos-zsh
-instalar-oh-my-zsh
+instalar-requisitos-zsh | log $0
+instalar-oh-my-zsh | log $0
