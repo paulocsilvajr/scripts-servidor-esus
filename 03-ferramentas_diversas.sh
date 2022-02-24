@@ -10,4 +10,9 @@ function instalar-ferramentas {
     $apty docker docker-compose docker-doc
 }
 
+function ativar-ufw() {
+    sudo ufw enable
+}
+
 instalar-ferramentas | log $0
+ativar-ufw | log $0
