@@ -4,7 +4,7 @@ BASE=$(dirname $0)
 source "$BASE/log.sh"
 
 function instalar-requisitos-zsh {
-    sudo apt install zsh curl wget python3-pygments chroma
+    sudo apt install -y zsh curl wget python3-pygments chroma
 }
 
 function instalar-oh-my-zsh {

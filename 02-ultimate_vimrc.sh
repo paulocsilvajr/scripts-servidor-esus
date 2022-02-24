@@ -4,7 +4,7 @@ BASE=$(dirname $0)
 source "$BASE/log.sh"
 
 function instalar-requisitos-vim {
-    sudo apt install git vim
+    sudo apt install -y git vim
 }
 
 function instalar-ultimate_vimrc {
