@@ -18,7 +18,7 @@ function configurar-sshd {
     echo -e "\nGerar cópia de arquivo de configuração de SSH($CONFIGSSH), adicionar permissão para usuário 'ti' e remover permissão de usuários 'root' e 'esus'"
     ! sudo test -f $COPIACONFIGSSH &&
         sudo cp -v $CONFIGSSH $COPIACONFIGSSH &&
-        sudo echo -e $NOVACONFIG >> $CONFIGSSH
+        echo -e $NOVACONFIG | tee -a $CONFIGSSH
 
     echo -e "\nAdicionar excessão para SSH em UFW"
     sudo ufw allow ssh
