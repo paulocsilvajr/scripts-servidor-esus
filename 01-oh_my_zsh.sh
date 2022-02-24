@@ -6,7 +6,7 @@ function instalar-requisitos-zsh {
 
 function instalar-oh-my-zsh {
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    echo "Para listar temas:"
+    echo -e "\n\nPara listar temas:"
     echo -e "omz theme list\n"
     echo "Para definir um tema(bureau):"
     echo -e "omz theme set bureau\n"
