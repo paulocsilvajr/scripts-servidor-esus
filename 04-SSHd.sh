@@ -16,7 +16,7 @@ function configurar-sshd {
     COPIACONFIGSSH="${CONFIGSSH}.original"
 
     echo -e "\nGerar cópia de arquivo de configuração de SSH($CONFIGSSH), adicionar permissão para usuário 'ti' e remover permissão de usuários 'root' e 'esus'"
-    ! test -f $COPIACONFIGSSH &&
+    ! sudo test -f $COPIACONFIGSSH &&
         sudo cp -v $CONFIGSSH $COPIACONFIGSSH &&
         sudo echo -e $NOVACONFIG >> $CONFIGSSH
 
