@@ -12,7 +12,7 @@ function configurar-sshd {
     sudo useradd --system --no-create-home ti
 
     echo -e "\nDefinir a senha informada para o usuário 'ti'"
-    echo "ti:$1" | chpasswd
+    echo "ti:$1" | sudo chpasswd
 
     NOVACONFIG="AllowUsers ti\nDenyUsers root esus"
     CONFIGSSH="/etc/ssh/sshd_config"
