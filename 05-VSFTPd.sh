@@ -2,6 +2,7 @@
 
 BASE=$(dirname $0)
 source "$BASE/log.sh"
+CERT="/etc/cert/vsftpd.pem"
 
 function instalar-vsftpd {
     sudo apt install -y vsftpd
@@ -12,7 +13,7 @@ function configurar-vsftpd {
     sudo systemctl enable vsftpd.service
 
     echo -e "\nAdicionar usuário 'vsftp' para uso em acesso ao SFTP"
-    sudo useradd vsftp
+    sudo useradd -m vsftp
 
     echo -e "\nDefinir a senha informada para o usuário 'vsftp'"
     echo "vsftp:$1" | sudo chpasswd
@@ -24,29 +25,48 @@ function configurar-vsftpd {
     sudo mkdir /home/vsftp/ftp/backups
     sudo chown vsftp:vsftp /home/vsftp/ftp/backups
 
+    PRIVATEKEY=$CERT
 
+    NOVACONFIG="write_enable=YES\nlocal_umask=022\nftpd_banner=Bem Vindo ao Servidor FTP\nchroot_local_user=YES\nsa_cert_file=$CERT\nrsa_private_key_file=$PRIVATEKEY\nssl_enable=YES\nallow_anon_ssl=NO\nforce_local_data_ssl=YES\nforce_local_logins_ssl=YES\nssl_tlsv1=YES\nssl_sslv2=NO\nssl_sslv3=NO\nrequire_ssl_reuse=NO\nssl_ciphers=HIGH\npasv_enable=Yes\npasv_min_port=10000\npasv_max_port=11000\nuser_sub_token=vsftp\nlocal_root=/home/vsftp/ftp\nuserlist_enable=YES\nuserlist_file=/etc/vsftpd.userlist\nuserlist_deny=NO"
 
-    # NOVACONFIG="AllowUsers ti\nDenyUsers root esus"
-    # CONFIGSSH="/etc/ssh/sshd_config"
-    # COPIACONFIGSSH="${CONFIGSSH}.original"
+    # inserido escape para / para funcionar corretamente a substituição via sed
+    CONFIGPARAREMOVER1="rsa_cert_file=\/etc\/ssl\/certs\/ssl-cert-snakeoil.pem"
+    CONFIGPARAREMOVER2="rsa_private_key_file=\/etc\/ssl\/private\/ssl-cert-snakeoil.key"
+    CONFIGPARAREMOVER3="ssl_enable=NO"
 
-    # echo -e "\nGerar cópia de arquivo de configuração de SSH($CONFIGSSH), adicionar permissão para usuário 'ti' e remover permissão de usuários 'root' e 'esus', se necessário"
-    # # somente será gerado cópia e adicionado nova configuração se não foi ainda gerado o backup .original com config original de sshd_config
-    # ! sudo test -f $COPIACONFIGSSH &&
-    #     sudo cp -v $CONFIGSSH $COPIACONFIGSSH &&
-    #     echo -e $NOVACONFIG | sudo tee -a $CONFIGSSH
+    CONFIGVSFTP="/etc/vsftpd.conf"
+    COPIACONFIGVSFTP="${CONFIGVSFTP}.original"
 
-    # echo -e "\nReiniciar serviço do SSH"
-    # sudo systemctl restart sshd.service
+    echo -e "\nGerar cópia de arquivo de configuração de VSFTP($CONFIGVSFTP) e definir novas configurações"
+    ! sudo test -f $COPIACONFIGVSFTP &&
+        sudo cp -v $CONFIGVSFTP $COPIACONFIGVSFTP &&
+        echo -e $NOVACONFIG | sudo tee -a $CONFIGVSFTP
 
-    # echo -e "\nAdicionar excessão para SSH em UFW"
-    # sudo ufw allow ssh
+    # remover algumas configurações
+    sudo sed -i "s/$CONFIGPARAREMOVER1/#$CONFIGPARAREMOVER1/" $CONFIGVSFTP
+    sudo sed -i "s/$CONFIGPARAREMOVER2/#$CONFIGPARAREMOVER2/" $CONFIGVSFTP
+    sudo sed -i "s/$CONFIGPARAREMOVER3/#$CONFIGPARAREMOVER2/" $CONFIGVSFTP
+
+    # criar arquivo de usuários autorizados
+    sudo touch /etc/vsftpd.userlist
+    sudo echo "vsftp" > /etc/vsftpd.userlist
+
+    echo -e "\nReiniciar serviço do VSFTP"
+    sudo systemctl restart vsftpd.service
+
+    echo -e "\nAdicionar excessão para VSFTP em UFW"
+    sudo ufw allow 20/tcp
+    sudo ufw allow 21/tcp
+    sudo ufw allow 10000:11000/tcp
 }
 
 if [[ $# -eq 0 ]]; then
     echo "Informe uma senha para o usuário 'vsftp'" | log $0
     exit 1
 fi
+
+echo "Gerar certificado para o VSFTP" | log $0
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout $CERT -out $CERT
 
 instalar-vsftpd | log $0
 configurar-vsftpd $1 | log $0
