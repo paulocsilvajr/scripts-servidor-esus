@@ -20,6 +20,9 @@ function configurar-sshd {
         sudo cp -v $CONFIGSSH $COPIACONFIGSSH &&
         echo -e $NOVACONFIG | sudo tee -a $CONFIGSSH
 
+    echo -e "\nReiniciar serviço do SSH"
+    sudo systemctl restart sshd.service
+
     echo -e "\nAdicionar excessão para SSH em UFW"
     sudo ufw allow ssh
 }
