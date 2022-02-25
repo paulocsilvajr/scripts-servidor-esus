@@ -28,7 +28,7 @@ function configurar-vsftpd {
 
     PRIVATEKEY=$CERT
 
-    NOVACONFIG="write_enable=YES\nlocal_umask=022\nftpd_banner=Bem Vindo ao Servidor FTP\nchroot_local_user=YES\nsa_cert_file=$CERT\nrsa_private_key_file=$PRIVATEKEY\nssl_enable=YES\nallow_anon_ssl=NO\nforce_local_data_ssl=YES\nforce_local_logins_ssl=YES\nssl_tlsv1=YES\nssl_sslv2=NO\nssl_sslv3=NO\nrequire_ssl_reuse=NO\nssl_ciphers=HIGH\npasv_enable=Yes\npasv_min_port=10000\npasv_max_port=11000\nuser_sub_token=vsftp\nlocal_root=/home/vsftp/ftp\nuserlist_enable=YES\nuserlist_file=/etc/vsftpd.userlist\nuserlist_deny=NO"
+    NOVACONFIG="write_enable=YES\nlocal_umask=022\nftpd_banner=Bem Vindo ao Servidor FTP\nchroot_local_user=YES\nrsa_cert_file=$CERT\nrsa_private_key_file=$PRIVATEKEY\nssl_enable=YES\nallow_anon_ssl=NO\nforce_local_data_ssl=YES\nforce_local_logins_ssl=YES\nssl_tlsv1=YES\nssl_sslv2=NO\nssl_sslv3=NO\nrequire_ssl_reuse=NO\nssl_ciphers=HIGH\npasv_enable=Yes\npasv_min_port=10000\npasv_max_port=11000\nuser_sub_token=vsftp\nlocal_root=/home/vsftp/ftp\nuserlist_enable=YES\nuserlist_file=/etc/vsftpd.userlist\nuserlist_deny=NO"
 
     # inserido escape para / para funcionar corretamente a substituição via sed
     CONFIGPARAREMOVER1="rsa_cert_file=\/etc\/ssl\/certs\/ssl-cert-snakeoil.pem"
