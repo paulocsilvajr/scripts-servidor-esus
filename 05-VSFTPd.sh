@@ -2,7 +2,8 @@
 
 BASE=$(dirname $0)
 source "$BASE/log.sh"
-CERT="/etc/cert/vsftpd.pem"
+BASECERT="/etc/cert"
+CERT="$BASECERT/vsftpd.pem"
 
 function instalar-vsftpd {
     sudo apt install -y vsftpd
@@ -49,7 +50,7 @@ function configurar-vsftpd {
 
     # criar arquivo de usuários autorizados
     sudo touch /etc/vsftpd.userlist
-    sudo echo "vsftp" > /etc/vsftpd.userlist
+    echo "vsftp" | sudo tee /etc/vsftpd.userlist
 
     echo -e "\nReiniciar serviço do VSFTP"
     sudo systemctl restart vsftpd.service
@@ -66,6 +67,7 @@ if [[ $# -eq 0 ]]; then
 fi
 
 echo "Gerar certificado para o VSFTP" | log $0
+sudo mkdir $BASECERT | log $0
 sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout $CERT -out $CERT
 
 instalar-vsftpd | log $0
