@@ -66,7 +66,7 @@ if [[ $# -eq 0 ]]; then
 fi
 
 echo "Gerar certificado para o VSFTP" | log $0
-openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout $CERT -out $CERT
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout $CERT -out $CERT
 
 instalar-vsftpd | log $0
 configurar-vsftpd $1 | log $0
