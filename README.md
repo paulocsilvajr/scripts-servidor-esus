@@ -13,6 +13,8 @@ Sintaxe: `05-VSFTPd.sh "senha usuário vsftp"`
 
 Os scripts geram um arquivo de log **log.txt** com os detalhes da execução, no diretório raiz dos scripts.
 
+Scripts testados em Máquina virtual(VirtualBox) Ubuntu nas versões 20.04 e 22.04(Beta).
+
 
 ### Arquivos
 ```
