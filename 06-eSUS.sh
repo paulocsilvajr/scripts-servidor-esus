@@ -15,7 +15,7 @@ function instalar-e-configura-esus {
 }
 
 if [[ $# -eq 0 ]]; then
-    echo "Informe o link do arquivo JAR da instalação do e-SUS" | log $0
+    echo "Informe como parâmetro o link do arquivo .JAR da instalação do e-SUS, obtido em site 'https://sisaps.saude.gov.br/esus/'" | log $0
     exit 1
 fi
 

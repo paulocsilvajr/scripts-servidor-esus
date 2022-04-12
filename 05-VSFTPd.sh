@@ -62,7 +62,7 @@ function configurar-vsftpd {
 }
 
 if [[ $# -eq 0 ]]; then
-    echo "Informe uma senha para o usuário 'vsftp'" | log $0
+    echo "Informe como parâmetro uma senha para o usuário 'vsftp'" | log $0
     exit 1
 fi
 
