@@ -8,7 +8,7 @@ function instalar-ferramentas {
     $apty lnav htop nmon nmap tree tuptime
     $apty virtualbox virtualbox-qt
     $apty docker docker-compose docker-doc
-    $apty smartmontools gparted
+    $apty smartmontools gparted ncdu
 }
 
 function ativar-ufw() {
