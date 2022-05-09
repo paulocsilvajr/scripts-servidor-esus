@@ -5,10 +5,10 @@ source "$BASE/log.sh"
 
 function instalar-ferramentas {
     apty="sudo apt install -y"
-    $apty lnav htop nmon nmap tree tuptime
+    $apty lnav htop nmon nmap tree tuptime tmux iftop
     $apty virtualbox virtualbox-qt
     $apty docker docker-compose docker-doc
-    $apty smartmontools gparted ncdu
+    $apty smartmontools gparted ncdu iotop
 }
 
 function ativar-ufw() {
