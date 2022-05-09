@@ -9,6 +9,7 @@ function instalar-ferramentas {
     $apty virtualbox virtualbox-qt
     $apty docker docker-compose docker-doc
     $apty smartmontools gparted ncdu iotop
+    $apty preload
 }
 
 function ativar-ufw() {
