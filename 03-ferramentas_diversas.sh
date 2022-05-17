@@ -10,6 +10,11 @@ function instalar-ferramentas {
     $apty docker docker-compose docker-doc
     $apty smartmontools gparted ncdu iotop
     $apty preload
+    sudo usermod -aG docker $USER
+}
+
+function permissao-docker {
+    sudo usermod -aG docker $USER
 }
 
 function ativar-ufw() {
@@ -18,3 +23,5 @@ function ativar-ufw() {
 
 instalar-ferramentas | log $0
 ativar-ufw | log $0
+permissao-docker | log $0
+
