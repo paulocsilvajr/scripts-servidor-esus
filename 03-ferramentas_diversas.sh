@@ -8,7 +8,7 @@ function instalar-ferramentas {
     $apty lnav htop nmon nmap tree tuptime tmux iftop
     $apty virtualbox virtualbox-qt
     $apty docker docker-compose docker-doc
-    $apty smartmontools gparted ncdu iotop
+    $apty smartmontools gparted ncdu iotop lsscsi
     $apty preload
     sudo usermod -aG docker $USER
 }
