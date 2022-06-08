@@ -3,11 +3,11 @@
 
 function log() {
     BASELOG=$(dirname $0)
+    LOGFILE="${BASELOG}/scripts-servidor-esus.log"
     DATACOMPLETA=$(date "+%Y%m%d %H%M%S")
 
     while read line
     do
-        echo "$DATACOMPLETA [$1] $line" | tee -a ${BASELOG}/log.txt
+        echo "${DATACOMPLETA} ${1}: ${line}" | tee -a $LOGFILE
     done < "${2:-/dev/stdin}"
 }
-

@@ -10,7 +10,6 @@ DATACOMPLETA=$(date "+%Y%m%d%H%M%S")
 
 source "$BASE/log.sh"
 
-
 backup_banco_esus() {
     echo "Backup de banco $DBESUS via 'pg_dump'..."
 

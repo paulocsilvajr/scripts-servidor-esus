@@ -11,9 +11,9 @@ Sintaxe: `04-SSHd.sh "senha usuário ti"`
 O script **'05-VSFTPd.sh'** cria o usuário **vsftp**, usado na autenticação do servidor FTP. 
 Sintaxe: `05-VSFTPd.sh "senha usuário vsftp"`
 
-Os scripts geram um arquivo de log **log.txt** com os detalhes da execução, no diretório raiz dos scripts.
+Os scripts geram um arquivo de log **scripts-servidor-esus.log** com os detalhes da execução, no diretório raiz dos scripts.
 
-Scripts testados em Máquina virtual(VirtualBox) Ubuntu nas versões 20.04 e 22.04(Beta).
+Scripts testados em Máquina virtual(VirtualBox) Ubuntu nas versões 20.04 e 22.04.
 
 
 ### Arquivos
@@ -21,10 +21,12 @@ Scripts testados em Máquina virtual(VirtualBox) Ubuntu nas versões 20.04 e 22.
 README.md: Este arquivo de ajuda.
 01-oh_my_zsh.sh: Instalação e configuração de ZSH e (Oh my ZSH)[https://ohmyz.sh/].
 02-ultimate_vimrc.sh: Instalação e configuração de VIM e (Ultimate vimrc)[https://github.com/amix/vimrc].
-03-ferramentas_diversas.sh: Instalação e configuração de VirtualBOX, Docker, Gparted, Smartmontools, lnav, htop, nmon, nmap e tree. É ativado o firewall do Ubuntu via UFW.
+03-ferramentas_diversas.sh: Instalação e configuração de VirtualBOX, Docker, Gparted, Smartmontools, lnav, htop, nmon, nmap, tree e outras ferramentas. Script também ativa o firewall do Ubuntu via UFW e adiciona o usuário ao grupo do docker.
 04-SSHd.sh: Instalação e configuração do SSH. 
 05-VSFTPd.sh: Instalação e configuração do VSFTP.
 06-eSUS.sh: Instalação e configuração do (e-SUS)[https://sisaps.saude.gov.br/esus/].
+07-backup_restore_db-esus.sh: Backup de banco de dados e restauração a partir de arquivo de backup(*.backup) do e-SUS.
+log.sh: Script com função para gerar o log personalizados dos scripts.
 ```
 
 
