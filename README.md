@@ -27,6 +27,7 @@ README.md: Este arquivo de ajuda.
 06-eSUS.sh: Instalação e configuração do (e-SUS)[https://sisaps.saude.gov.br/esus/].
 07-backup_restore_db-esus.sh: Backup de banco de dados e restauração a partir de arquivo de backup(*.backup) do e-SUS.
 log.sh: Script com função para gerar o log personalizados dos scripts.
+obter_link_jar_eSUS.py: Script em Python(3) para obter o link do JAR do e-SUS PEC atualizado.
 ```
 
 
