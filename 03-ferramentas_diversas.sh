@@ -10,6 +10,7 @@ function instalar-ferramentas {
     $apty docker docker-compose docker-doc
     $apty smartmontools gparted ncdu iotop lsscsi
     $apty preload
+    pip3 install beautifulsoup4
     sudo usermod -aG docker $USER
 }
 
