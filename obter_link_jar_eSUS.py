@@ -41,5 +41,5 @@ for link in a_links:
 		if 'Linux' in link.attrs['href']:
 			link_download_eSUS_linux = link.attrs['href']
 
-logging.info('Obtido link: {link_download_eSUS_linux}')
+logging.info(f'Obtido link: {link_download_eSUS_linux}')
 print(link_download_eSUS_linux)
