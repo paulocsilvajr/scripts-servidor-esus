@@ -8,7 +8,7 @@ function instalar-ferramentas {
     $apty lnav htop nmon nmap tree tuptime tmux iftop neofetch
     $apty virtualbox virtualbox-qt
     $apty docker docker-compose docker-doc
-    $apty smartmontools gparted ncdu iotop lsscsi
+    $apty smartmontools gparted ncdu iotop-c lsscsi
     $apty preload
     $apty python3-pip
     pip3 install beautifulsoup4
